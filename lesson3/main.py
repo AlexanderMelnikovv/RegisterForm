@@ -17,6 +17,7 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    db_session.global_init('db/reg_user.db')
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:

@@ -10,14 +10,15 @@ class User(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    about = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    email = sqlalchemy.Column(sqlalchemy.String, nullable=True,
-                              index=True, unique=True)
-    hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    create_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                    default=dt.datetime.now)
-    news = orm.relationship("News", back_populates='user')
+    surname = sqlalchemy.Column(sqlalchemy.String)
+    name = sqlalchemy.Column(sqlalchemy.String)
+    age = sqlalchemy.Column(sqlalchemy.Integer)
+    position = sqlalchemy.Column(sqlalchemy.String)
+    speciality = sqlalchemy.Column(sqlalchemy.String)
+    address = sqlalchemy.Column(sqlalchemy.String)
+    email = sqlalchemy.Column(sqlalchemy.String, unique=True)
+    hashed_password = sqlalchemy.Column(sqlalchemy.String)
+    modified_date = sqlalchemy.Column(sqlalchemy.DateTime)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
